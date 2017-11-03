@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8302F9471D2E197F000E7CFD /* Shaders-preamble.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8302F9451D2E197F000E7CFD /* Shaders-preamble.txt */; };
+		8302F9481D2E197F000E7CFD /* Shaders-template.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8302F9461D2E197F000E7CFD /* Shaders-template.txt */; };
+		8308A3F01D34AA76001C7790 /* STWDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 8308A3EF1D34AA76001C7790 /* STWDocument.m */; };
+		8308A3F31D34CD3D001C7790 /* STWProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8308A3F21D34CD3D001C7790 /* STWProjectCell.m */; };
+		8308A3F51D34D2B3001C7790 /* ProjectThumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8308A3F41D34D2B3001C7790 /* ProjectThumbnail@2x.png */; };
+		8324FF531D7DEB8800E0F774 /* hg_sdf.metal in Resources */ = {isa = PBXBuildFile; fileRef = 83274E981D7DD4A500218E42 /* hg_sdf.metal */; };
+		83274E971D7D400D00218E42 /* STWCompilerDiagnostics.m in Sources */ = {isa = PBXBuildFile; fileRef = 83274E961D7D400D00218E42 /* STWCompilerDiagnostics.m */; };
+		834837F81D59EE1100393FC8 /* STWEditableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 834837F71D59EE1100393FC8 /* STWEditableLabel.m */; };
+		8349B2C11D90DD17009FA3A2 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 8349B2C01D90DD17009FA3A2 /* noise.png */; };
+		8349B2C41D90E07C009FA3A2 /* STWSnapshotter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8349B2C31D90E07C009FA3A2 /* STWSnapshotter.m */; };
+		8354017F1D985B0F009E193C /* STWTextureSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8354017E1D985B0F009E193C /* STWTextureSelectionViewController.m */; };
+		838785E31D2B096D00F53EA6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 838785E21D2B096D00F53EA6 /* main.m */; };
+		838785E61D2B096D00F53EA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 838785E51D2B096D00F53EA6 /* AppDelegate.m */; };
+		838785E91D2B096D00F53EA6 /* STWProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 838785E81D2B096D00F53EA6 /* STWProjectViewController.m */; };
+		838785EE1D2B096D00F53EA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 838785ED1D2B096D00F53EA6 /* Assets.xcassets */; };
+		838785F11D2B096D00F53EA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 838785EF1D2B096D00F53EA6 /* LaunchScreen.storyboard */; };
+		838785FA1D2B0AE500F53EA6 /* STWSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 838785F91D2B0AE500F53EA6 /* STWSceneViewController.m */; };
+		838785FC1D2B11C000F53EA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 838785FB1D2B11C000F53EA6 /* Main.storyboard */; };
+		838785FF1D2B1C8500F53EA6 /* STWEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 838785FE1D2B1C8500F53EA6 /* STWEditorViewController.m */; };
+		838786041D2B25B900F53EA6 /* STWMetalContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 838786011D2B25B900F53EA6 /* STWMetalContext.m */; };
+		838786051D2B25B900F53EA6 /* STWSceneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 838786031D2B25B900F53EA6 /* STWSceneView.m */; };
+		839732351D32EE1300C5C8AA /* STWProjectCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 839732341D32EE1300C5C8AA /* STWProjectCollectionViewController.m */; };
+		83D1823C1D7E1D4A00B53C61 /* STWPopupMessageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D1823B1D7E1D4A00B53C61 /* STWPopupMessageButton.m */; };
+		83E3586E1D45AA040068A0E6 /* brickwall_normal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83E3586C1D45AA040068A0E6 /* brickwall_normal.jpg */; };
+		83E3586F1D45AA040068A0E6 /* brickwall.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83E3586D1D45AA040068A0E6 /* brickwall.jpg */; };
+		83F731C91DEA61AD007363F4 /* STWInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F731C81DEA61AD007363F4 /* STWInputAccessoryView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8302F9451D2E197F000E7CFD /* Shaders-preamble.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shaders-preamble.txt"; sourceTree = "<group>"; };
+		8302F9461D2E197F000E7CFD /* Shaders-template.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Shaders-template.txt"; sourceTree = "<group>"; };
+		8308A3EC1D34A758001C7790 /* File.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = File.metal; sourceTree = "<group>"; };
+		8308A3EE1D34AA76001C7790 /* STWDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWDocument.h; sourceTree = "<group>"; };
+		8308A3EF1D34AA76001C7790 /* STWDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWDocument.m; sourceTree = "<group>"; };
+		8308A3F11D34CD3D001C7790 /* STWProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWProjectCell.h; sourceTree = "<group>"; };
+		8308A3F21D34CD3D001C7790 /* STWProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWProjectCell.m; sourceTree = "<group>"; };
+		8308A3F41D34D2B3001C7790 /* ProjectThumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ProjectThumbnail@2x.png"; sourceTree = "<group>"; };
+		83274E951D7D400D00218E42 /* STWCompilerDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWCompilerDiagnostics.h; sourceTree = "<group>"; };
+		83274E961D7D400D00218E42 /* STWCompilerDiagnostics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWCompilerDiagnostics.m; sourceTree = "<group>"; };
+		83274E981D7DD4A500218E42 /* hg_sdf.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = hg_sdf.metal; sourceTree = "<group>"; };
+		834837F61D59EE1100393FC8 /* STWEditableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWEditableLabel.h; sourceTree = "<group>"; };
+		834837F71D59EE1100393FC8 /* STWEditableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWEditableLabel.m; sourceTree = "<group>"; };
+		8349B2C01D90DD17009FA3A2 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		8349B2C21D90E07C009FA3A2 /* STWSnapshotter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWSnapshotter.h; sourceTree = "<group>"; };
+		8349B2C31D90E07C009FA3A2 /* STWSnapshotter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWSnapshotter.m; sourceTree = "<group>"; };
+		8349B2C51D90E643009FA3A2 /* STWUniforms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STWUniforms.h; sourceTree = "<group>"; };
+		8354017D1D985B0F009E193C /* STWTextureSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWTextureSelectionViewController.h; sourceTree = "<group>"; };
+		8354017E1D985B0F009E193C /* STWTextureSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWTextureSelectionViewController.m; sourceTree = "<group>"; };
+		838785DE1D2B096D00F53EA6 /* Shadertweak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shadertweak.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		838785E21D2B096D00F53EA6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		838785E41D2B096D00F53EA6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		838785E51D2B096D00F53EA6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		838785E71D2B096D00F53EA6 /* STWProjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STWProjectViewController.h; sourceTree = "<group>"; };
+		838785E81D2B096D00F53EA6 /* STWProjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STWProjectViewController.m; sourceTree = "<group>"; };
+		838785ED1D2B096D00F53EA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		838785F01D2B096D00F53EA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		838785F21D2B096D00F53EA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		838785F81D2B0AE500F53EA6 /* STWSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWSceneViewController.h; sourceTree = "<group>"; };
+		838785F91D2B0AE500F53EA6 /* STWSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWSceneViewController.m; sourceTree = "<group>"; };
+		838785FB1D2B11C000F53EA6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		838785FD1D2B1C8500F53EA6 /* STWEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWEditorViewController.h; sourceTree = "<group>"; };
+		838785FE1D2B1C8500F53EA6 /* STWEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWEditorViewController.m; sourceTree = "<group>"; };
+		838786001D2B25B900F53EA6 /* STWMetalContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWMetalContext.h; sourceTree = "<group>"; };
+		838786011D2B25B900F53EA6 /* STWMetalContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWMetalContext.m; sourceTree = "<group>"; };
+		838786021D2B25B900F53EA6 /* STWSceneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWSceneView.h; sourceTree = "<group>"; };
+		838786031D2B25B900F53EA6 /* STWSceneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWSceneView.m; sourceTree = "<group>"; };
+		839732331D32EE1300C5C8AA /* STWProjectCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWProjectCollectionViewController.h; sourceTree = "<group>"; };
+		839732341D32EE1300C5C8AA /* STWProjectCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWProjectCollectionViewController.m; sourceTree = "<group>"; };
+		83D1823A1D7E1D4A00B53C61 /* STWPopupMessageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWPopupMessageButton.h; sourceTree = "<group>"; };
+		83D1823B1D7E1D4A00B53C61 /* STWPopupMessageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWPopupMessageButton.m; sourceTree = "<group>"; };
+		83E3586C1D45AA040068A0E6 /* brickwall_normal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall_normal.jpg; sourceTree = "<group>"; };
+		83E3586D1D45AA040068A0E6 /* brickwall.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = brickwall.jpg; sourceTree = "<group>"; };
+		83F731C71DEA61AD007363F4 /* STWInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWInputAccessoryView.h; sourceTree = "<group>"; };
+		83F731C81DEA61AD007363F4 /* STWInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWInputAccessoryView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		838785DB1D2B096D00F53EA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		834837F01D59ED0300393FC8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				838785ED1D2B096D00F53EA6 /* Assets.xcassets */,
+				8302F9451D2E197F000E7CFD /* Shaders-preamble.txt */,
+				8302F9461D2E197F000E7CFD /* Shaders-template.txt */,
+				83274E981D7DD4A500218E42 /* hg_sdf.metal */,
+				8308A3EC1D34A758001C7790 /* File.metal */,
+				8349B2C01D90DD17009FA3A2 /* noise.png */,
+				83E3586C1D45AA040068A0E6 /* brickwall_normal.jpg */,
+				83E3586D1D45AA040068A0E6 /* brickwall.jpg */,
+				8308A3F41D34D2B3001C7790 /* ProjectThumbnail@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		834837F11D59ED2600393FC8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				838786021D2B25B900F53EA6 /* STWSceneView.h */,
+				838786031D2B25B900F53EA6 /* STWSceneView.m */,
+				8308A3F11D34CD3D001C7790 /* STWProjectCell.h */,
+				8308A3F21D34CD3D001C7790 /* STWProjectCell.m */,
+				834837F61D59EE1100393FC8 /* STWEditableLabel.h */,
+				834837F71D59EE1100393FC8 /* STWEditableLabel.m */,
+				83D1823A1D7E1D4A00B53C61 /* STWPopupMessageButton.h */,
+				83D1823B1D7E1D4A00B53C61 /* STWPopupMessageButton.m */,
+				83F731C71DEA61AD007363F4 /* STWInputAccessoryView.h */,
+				83F731C81DEA61AD007363F4 /* STWInputAccessoryView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		834837F21D59ED3300393FC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8308A3EE1D34AA76001C7790 /* STWDocument.h */,
+				8308A3EF1D34AA76001C7790 /* STWDocument.m */,
+				8349B2C51D90E643009FA3A2 /* STWUniforms.h */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		834837F31D59ED5100393FC8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				838786001D2B25B900F53EA6 /* STWMetalContext.h */,
+				838786011D2B25B900F53EA6 /* STWMetalContext.m */,
+				83274E951D7D400D00218E42 /* STWCompilerDiagnostics.h */,
+				83274E961D7D400D00218E42 /* STWCompilerDiagnostics.m */,
+				8349B2C21D90E07C009FA3A2 /* STWSnapshotter.h */,
+				8349B2C31D90E07C009FA3A2 /* STWSnapshotter.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		834837F41D59ED6A00393FC8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				838785E71D2B096D00F53EA6 /* STWProjectViewController.h */,
+				838785E81D2B096D00F53EA6 /* STWProjectViewController.m */,
+				838785F81D2B0AE500F53EA6 /* STWSceneViewController.h */,
+				838785F91D2B0AE500F53EA6 /* STWSceneViewController.m */,
+				838785FD1D2B1C8500F53EA6 /* STWEditorViewController.h */,
+				838785FE1D2B1C8500F53EA6 /* STWEditorViewController.m */,
+				839732331D32EE1300C5C8AA /* STWProjectCollectionViewController.h */,
+				839732341D32EE1300C5C8AA /* STWProjectCollectionViewController.m */,
+				8354017D1D985B0F009E193C /* STWTextureSelectionViewController.h */,
+				8354017E1D985B0F009E193C /* STWTextureSelectionViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		834837F51D59ED8A00393FC8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				838785EF1D2B096D00F53EA6 /* LaunchScreen.storyboard */,
+				838785FB1D2B11C000F53EA6 /* Main.storyboard */,
+				838785F21D2B096D00F53EA6 /* Info.plist */,
+				838785E21D2B096D00F53EA6 /* main.m */,
+				838785E41D2B096D00F53EA6 /* AppDelegate.h */,
+				838785E51D2B096D00F53EA6 /* AppDelegate.m */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		838785D51D2B096D00F53EA6 = {
+			isa = PBXGroup;
+			children = (
+				838785E01D2B096D00F53EA6 /* Shadertweak */,
+				838785DF1D2B096D00F53EA6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		838785DF1D2B096D00F53EA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				838785DE1D2B096D00F53EA6 /* Shadertweak.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		838785E01D2B096D00F53EA6 /* Shadertweak */ = {
+			isa = PBXGroup;
+			children = (
+				834837F21D59ED3300393FC8 /* Model */,
+				834837F11D59ED2600393FC8 /* View */,
+				834837F41D59ED6A00393FC8 /* Controller */,
+				834837F31D59ED5100393FC8 /* Utilities */,
+				834837F51D59ED8A00393FC8 /* App */,
+				834837F01D59ED0300393FC8 /* Resources */,
+			);
+			path = Shadertweak;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		838785DD1D2B096D00F53EA6 /* Shadertweak */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 838785F51D2B096D00F53EA6 /* Build configuration list for PBXNativeTarget "Shadertweak" */;
+			buildPhases = (
+				838785DA1D2B096D00F53EA6 /* Sources */,
+				838785DB1D2B096D00F53EA6 /* Frameworks */,
+				838785DC1D2B096D00F53EA6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shadertweak;
+			productName = Shadertweak;
+			productReference = 838785DE1D2B096D00F53EA6 /* Shadertweak.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		838785D61D2B096D00F53EA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				KnownAssetTags = (
+					Icons,
+				);
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Warren Moore";
+				TargetAttributes = {
+					838785DD1D2B096D00F53EA6 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5XU8G72NQS;
+						DevelopmentTeamName = "Auerhaus Development, LLC";
+					};
+				};
+			};
+			buildConfigurationList = 838785D91D2B096D00F53EA6 /* Build configuration list for PBXProject "Shadertweak" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 838785D51D2B096D00F53EA6;
+			productRefGroup = 838785DF1D2B096D00F53EA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				838785DD1D2B096D00F53EA6 /* Shadertweak */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		838785DC1D2B096D00F53EA6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8324FF531D7DEB8800E0F774 /* hg_sdf.metal in Resources */,
+				8302F9481D2E197F000E7CFD /* Shaders-template.txt in Resources */,
+				838785FC1D2B11C000F53EA6 /* Main.storyboard in Resources */,
+				838785F11D2B096D00F53EA6 /* LaunchScreen.storyboard in Resources */,
+				8308A3F51D34D2B3001C7790 /* ProjectThumbnail@2x.png in Resources */,
+				838785EE1D2B096D00F53EA6 /* Assets.xcassets in Resources */,
+				8302F9471D2E197F000E7CFD /* Shaders-preamble.txt in Resources */,
+				83E3586E1D45AA040068A0E6 /* brickwall_normal.jpg in Resources */,
+				8349B2C11D90DD17009FA3A2 /* noise.png in Resources */,
+				83E3586F1D45AA040068A0E6 /* brickwall.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		838785DA1D2B096D00F53EA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				838786041D2B25B900F53EA6 /* STWMetalContext.m in Sources */,
+				83274E971D7D400D00218E42 /* STWCompilerDiagnostics.m in Sources */,
+				838785E91D2B096D00F53EA6 /* STWProjectViewController.m in Sources */,
+				838785E61D2B096D00F53EA6 /* AppDelegate.m in Sources */,
+				8354017F1D985B0F009E193C /* STWTextureSelectionViewController.m in Sources */,
+				83D1823C1D7E1D4A00B53C61 /* STWPopupMessageButton.m in Sources */,
+				839732351D32EE1300C5C8AA /* STWProjectCollectionViewController.m in Sources */,
+				83F731C91DEA61AD007363F4 /* STWInputAccessoryView.m in Sources */,
+				8308A3F01D34AA76001C7790 /* STWDocument.m in Sources */,
+				834837F81D59EE1100393FC8 /* STWEditableLabel.m in Sources */,
+				8349B2C41D90E07C009FA3A2 /* STWSnapshotter.m in Sources */,
+				838785FA1D2B0AE500F53EA6 /* STWSceneViewController.m in Sources */,
+				838785FF1D2B1C8500F53EA6 /* STWEditorViewController.m in Sources */,
+				838786051D2B25B900F53EA6 /* STWSceneView.m in Sources */,
+				838785E31D2B096D00F53EA6 /* main.m in Sources */,
+				8308A3F31D34CD3D001C7790 /* STWProjectCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		838785EF1D2B096D00F53EA6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				838785F01D2B096D00F53EA6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		838785F31D2B096D00F53EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		838785F41D2B096D00F53EA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		838785F61D2B096D00F53EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Shadertweak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.warrenmoore.Shadertweak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		838785F71D2B096D00F53EA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Shadertweak/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.warrenmoore.Shadertweak;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		838785D91D2B096D00F53EA6 /* Build configuration list for PBXProject "Shadertweak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				838785F31D2B096D00F53EA6 /* Debug */,
+				838785F41D2B096D00F53EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		838785F51D2B096D00F53EA6 /* Build configuration list for PBXNativeTarget "Shadertweak" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				838785F61D2B096D00F53EA6 /* Debug */,
+				838785F71D2B096D00F53EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 838785D61D2B096D00F53EA6 /* Project object */;
+}
