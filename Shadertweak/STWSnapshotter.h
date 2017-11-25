@@ -5,6 +5,8 @@
 
 + (UIImage *)captureSnapshotOfSize:(CGSize)size
                renderPipelineState:(id<MTLRenderPipelineState>)renderPipelineState
-                          textures:(NSArray *)textures;
+                          textures:(NSArray *)textures
+							  time:(float)time
+						 deltaTime:(float)delta;
 
 @end

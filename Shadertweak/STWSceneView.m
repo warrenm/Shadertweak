@@ -31,6 +31,7 @@
 @property (nonatomic, strong) id<MTLRenderPipelineState> renderPipelineState;
 @property (nonatomic, strong) id<MTLBuffer> vertexBuffer;
 @property (nonatomic, assign) NSTimeInterval startTime;
+@property (nonatomic, readwrite) float time, timeDelta;
 @property (nonatomic, copy) NSMutableArray *touches;
 @property (nonatomic, copy) NSMutableArray *textures;
 @property (nonatomic, readwrite) CGFloat resolutionScale;
@@ -70,6 +71,8 @@
 		// Set resolution scale to 2.0 (retina) and disable resizing drawable.
 	self.resolutionScale = 2.0;
 	self.autoResizeDrawable = NO;
+	
+	self.time = 0;
 
     self.startTime = CACurrentMediaTime();
 
@@ -87,6 +90,7 @@
 	CGSize frameSize = self.frame.size;
 	self.drawableSize = CGSizeMake(frameSize.width * self.resolutionScale, frameSize.height * self.resolutionScale);
 	[super layoutSubviews];
+	[self setNeedsDisplay];
 }
 
 - (void)makeVertexBuffer {
@@ -209,8 +213,22 @@
     }
 
     STWUniforms uniforms;
-    uniforms.time = CACurrentMediaTime() - self.startTime;
-    uniforms.deltaTime = 1 / 60.0f;
+	
+	// If paused use the last saved time + time delta, otherwise calculate and store values
+	if (self.paused) {
+		uniforms.time = self.time;
+		uniforms.deltaTime = self.timeDelta;
+	} else {
+		float time = CACurrentMediaTime() - self.startTime;
+		float deltaTime = time - self.time;
+		
+		uniforms.time = time;
+		uniforms.deltaTime = deltaTime;
+		
+		self.time = time;
+		self.timeDelta = deltaTime;
+	}
+	
     uniforms.resolution = (packed_float2) { self.drawableSize.width, self.drawableSize.height };
 
     for (int i = 0; i < STWMaxConcurrentTouches; ++i) {
@@ -249,7 +267,13 @@
 }
 
 - (UIImage *)captureSnapshotAtSize:(CGSize)imageSize {
-    return [STWSnapshotter captureSnapshotOfSize:imageSize renderPipelineState:self.renderPipelineState textures:self.textures];
+	// Changed to just use drawViewHierarchyInRect
+	UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
+	[self drawViewHierarchyInRect:CGRectMake(0.0, 0.0, imageSize.width, imageSize.height) afterScreenUpdates:NO];
+	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	return image;
 }
 
 @end

@@ -105,9 +105,12 @@ static CGSize STWSnapshotCaptureSize = { .width = 683, .height = 512 };
     [self registerForKeyboardNotifications];
 }
 
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//}
+- (void)viewWillDisappear:(BOOL)animated {
+		//	Get the thumbnail before it's off screen so we can use view snapshotting
+	UIImage *thumbnailImage = [self.sceneViewController.sceneView captureSnapshotAtSize:STWSnapshotCaptureSize];
+	self.document.thumbnailImage = thumbnailImage;
+    [super viewWillDisappear:animated];
+}
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -193,11 +196,15 @@ static CGSize STWSnapshotCaptureSize = { .width = 683, .height = 512 };
     
     self.sceneViewController.document = document;
     self.editorViewController.document = document;
+	
+	int resScale = document.resolutionScale;
+	if (resScale < 3 && resScale > 0) {
+		self.selectedResIndex = resScale;
+		[self updateRes];
+	}
 }
 
 - (void)closeDocument {
-    UIImage *thumbnailImage = [self.sceneViewController.sceneView captureSnapshotAtSize:STWSnapshotCaptureSize];
-    self.document.thumbnailImage = thumbnailImage;
 
     NSURL *fileURL = self.document.fileURL;
     [self.document closeWithCompletionHandler:^(BOOL success) {
@@ -340,13 +347,19 @@ static CGSize STWSnapshotCaptureSize = { .width = 683, .height = 512 };
  Cycles between 2x (retina), 1x (half retina), 2x (quarter) resolutions
  */
 - (void)switchRes {
-	const NSArray *titles = @[@"Res: 2x", @"Res: 1x", @"Res: 0.5x"];
-	const CGFloat scales[] = {2.0, 1.0, 0.5};
 	self.selectedResIndex++;
 	if (self.selectedResIndex > 2) { self.selectedResIndex = 0; }
 	
-	self.resButton.title = titles[self.selectedResIndex];
+	self.document.resolutionScale = self.selectedResIndex;
+	[self updateRes];
+}
+
+- (void)updateRes {
+	const NSArray *titles = @[@"Res: 2x", @"Res: 1x", @"Res: 0.5x"];
+	const CGFloat scales[] = {2.0, 1.0, 0.5};
+	
 	[self.sceneViewController.sceneView updateResolutionScaling: scales[self.selectedResIndex]];
+	self.resButton.title = titles[self.selectedResIndex];
 }
 
 #pragma mark - Pause / play

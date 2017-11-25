@@ -77,7 +77,27 @@ NSString *const STWDocumentDidSaveNotificationName = @"STWDocumentDidSaveNotific
         UIImage *thumbnailImage = [UIImage imageWithData:thumbnailData scale:2.0];
         self.thumbnailImage = thumbnailImage;
     }
+	
+	NSFileWrapper *metadataFileWrapper = fileMap[@"Metadata.plist"];
 
+	if (metadataFileWrapper) {
+		NSData *metadataData = [metadataFileWrapper regularFileContents];
+		if (metadataData) {
+			NSPropertyListFormat format;
+			NSDictionary *metadata = [NSPropertyListSerialization propertyListWithData:metadataData
+																			   options:0
+																				format:&format
+																				 error:NULL];
+			if (metadata) {
+				// Get the resolution scale
+				NSNumber *resScale = metadata[@"SelectedResolution"];
+				if (resScale) {
+					self.resolutionScale = resScale.intValue;
+				}
+			}
+		}
+	}
+	
     return YES;
 }
 
@@ -101,7 +121,16 @@ NSString *const STWDocumentDidSaveNotificationName = @"STWDocumentDidSaveNotific
     }
 
      // add additional content (metadata, assets...)
-
+	// Just the selected resolution scaling for now...
+	NSDictionary *metadata = @{@"SelectedResolution": @(self.resolutionScale)};
+	NSData *metadataData = [NSPropertyListSerialization dataWithPropertyList:metadata
+																	 format:NSPropertyListBinaryFormat_v1_0
+																	options:0
+																	  error:NULL];
+	NSFileWrapper *metadataWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:metadataData];
+	metadataWrapper.preferredFilename = @"Metadata.plist";
+	[contents addFileWrapper:metadataWrapper];
+	
     return contents;
 }
 
@@ -139,6 +168,11 @@ completionHandler:(void (^)(BOOL))completionHandler
 - (void)setThumbnailImage:(UIImage *)thumbnailImage {
     _thumbnailImage = thumbnailImage;
     self.dirty = YES;
+}
+
+-(void)setResolutionScale:(int)resolutionScale {
+	_resolutionScale = resolutionScale;
+	self.dirty = YES;
 }
 
 - (NSString *)patchSpecialHeadersInSource:(NSString *)source {
