@@ -9,6 +9,8 @@ static CGSize STWSnapshotCaptureSize = { .width = 683, .height = 512 };
 @property (nonatomic, strong) UILayoutGuide *keyboardLayoutGuide;
 @property (nonatomic, strong) NSLayoutConstraint *keyboardHeightConstraint;
 @property (nonatomic, strong) UIToolbar *toolbar;
+@property (nonatomic, strong) UIBarButtonItem *geometryButton, *texturesButton, *pauseButton, *playButton, *resButton, *toolbarSpacer;
+@property (nonatomic, readwrite) int selectedResIndex;
 @property (nonatomic, strong) STWEditableLabel *titleLabel;
 @end
 
@@ -28,6 +30,9 @@ static CGSize STWSnapshotCaptureSize = { .width = 683, .height = 512 };
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+		// Set initial res to 2x (retina)
+	self.selectedResIndex = 0;
     
     self.toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [self.view addSubview:self.toolbar];
@@ -65,20 +70,33 @@ static CGSize STWSnapshotCaptureSize = { .width = 683, .height = 512 };
 }
 
 - (void)configureToolbar {
-    UIImage *geometryIcon = [UIImage imageNamed:@"geometry-icon"];
-    UIBarButtonItem *geometryButton = [[UIBarButtonItem alloc] initWithImage:geometryIcon
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(showGeometrySelectionPopup:)];
-    geometryButton.enabled = NO;
-    UIImage *texturesIcon = [UIImage imageNamed:@"texture-icon"];
-    UIBarButtonItem *texturesButton = [[UIBarButtonItem alloc] initWithImage:texturesIcon
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(showTextureSelectionPopup:)];
-    NSArray *buttonItems = @[ geometryButton, texturesButton ];
+	UIImage *geometryIcon = [UIImage imageNamed:@"geometry-icon"];
+	self.geometryButton = [[UIBarButtonItem alloc] initWithImage:geometryIcon
+														   style:UIBarButtonItemStylePlain
+														  target:self
+														  action:@selector(showGeometrySelectionPopup:)];
+	self.geometryButton.enabled = NO;
+	UIImage *texturesIcon = [UIImage imageNamed:@"texture-icon"];
+	self.texturesButton = [[UIBarButtonItem alloc] initWithImage:texturesIcon
+														   style:UIBarButtonItemStylePlain
+														  target:self
+														  action:@selector(showTextureSelectionPopup:)];
+	self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseRunning)];
+	self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(resumePlayback)];
+	
+	self.resButton = [[UIBarButtonItem alloc] initWithTitle:@"Res: 2x" style:UIBarButtonItemStylePlain target:self action:@selector(switchRes)];
+	
+	self.toolbarSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+	self.toolbarSpacer.width = 8.0;
+	
+	[self updateToolbarForPlaying:YES];
+}
 
-    [self.toolbar setItems:buttonItems];
+-(void)updateToolbarForPlaying:(BOOL)playing {
+	NSArray *buttonItems = @[ self.geometryButton, self.toolbarSpacer, self.texturesButton, self.self.toolbarSpacer, playing ? self.pauseButton  : self.playButton, self.toolbarSpacer, self.resButton];
+	
+	[self.toolbar setItems:buttonItems];
+	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -314,6 +332,39 @@ static CGSize STWSnapshotCaptureSize = { .width = 683, .height = 512 };
     UIPopoverPresentationController *presentationController = textureSelectionNavController.popoverPresentationController;
 
     presentationController.barButtonItem = sender;
+}
+
+#pragma mark - Resolution settings
+
+/**
+ Cycles between 2x (retina), 1x (half retina), 2x (quarter) resolutions
+ */
+- (void)switchRes {
+	const NSArray *titles = @[@"Res: 2x", @"Res: 1x", @"Res: 0.5x"];
+	const CGFloat scales[] = {2.0, 1.0, 0.5};
+	self.selectedResIndex++;
+	if (self.selectedResIndex > 2) { self.selectedResIndex = 0; }
+	
+	self.resButton.title = titles[self.selectedResIndex];
+	[self.sceneViewController.sceneView updateResolutionScaling: scales[self.selectedResIndex]];
+}
+
+#pragma mark - Pause / play
+
+/**
+ Pauses MTKView's automatic animation.
+ */
+- (void)pauseRunning {
+	self.sceneViewController.isRunning = NO;
+	[self updateToolbarForPlaying:NO];
+}
+
+/**
+ Resumes MTKView's automatic animation.
+ */
+- (void)resumePlayback {
+	self.sceneViewController.isRunning = YES;
+	[self updateToolbarForPlaying:YES];
 }
 
 #pragma mark - Keyboard management

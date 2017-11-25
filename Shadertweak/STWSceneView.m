@@ -33,6 +33,7 @@
 @property (nonatomic, assign) NSTimeInterval startTime;
 @property (nonatomic, copy) NSMutableArray *touches;
 @property (nonatomic, copy) NSMutableArray *textures;
+@property (nonatomic, readwrite) CGFloat resolutionScale;
 @end
 
 @implementation STWSceneView
@@ -65,11 +66,27 @@
     // makes it responsive to the usual setNeedsDisplay message sequence
 //    self.paused = YES;
 //    self.enableSetNeedsDisplay = YES;
+	
+		// Set resolution scale to 2.0 (retina) and disable resizing drawable.
+	self.resolutionScale = 2.0;
+	self.autoResizeDrawable = NO;
 
     self.startTime = CACurrentMediaTime();
 
     [self makeVertexBuffer];
     [self makeDefaultTextures];
+}
+
+- (void)updateResolutionScaling:(CGFloat)scale {
+	self.resolutionScale = scale;
+	[self layoutSubviews];
+	[self setNeedsDisplay];
+}
+
+-(void)layoutSubviews {
+	CGSize frameSize = self.frame.size;
+	self.drawableSize = CGSizeMake(frameSize.width * self.resolutionScale, frameSize.height * self.resolutionScale);
+	[super layoutSubviews];
 }
 
 - (void)makeVertexBuffer {

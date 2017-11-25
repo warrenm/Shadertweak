@@ -12,4 +12,6 @@
 
 - (UIImage *)captureSnapshotAtSize:(CGSize)imageSize;
 
+- (void)updateResolutionScaling:(CGFloat)scale;
+
 @end
