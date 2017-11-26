@@ -72,6 +72,11 @@
 	self.resolutionScale = 2.0;
 	self.autoResizeDrawable = NO;
 	
+	// Use XR pixel formats on devices with P3 capable displays
+	if ([UIScreen mainScreen].traitCollection.displayGamut == UIDisplayGamutP3) {
+		self.colorPixelFormat =  MTLPixelFormatBGR10_XR;
+	}
+	
 	self.time = 0;
 
     self.startTime = CACurrentMediaTime();
@@ -267,9 +272,27 @@
 }
 
 - (UIImage *)captureSnapshotAtSize:(CGSize)imageSize {
-	// Changed to just use drawViewHierarchyInRect
+	// get the current view as image, scaled and cropped to fit
+	CGFloat viewAspect = self.frame.size.width / self.frame.size.height;
+	CGFloat imageAspect = imageSize.width / imageSize.height;
+	
+	// Determine rectangle to draw in to aspect fill
+	CGRect targetRect;
+	if (imageAspect > viewAspect) {
+			// Fit to width
+		float maxSize = MAX(imageSize.width, self.frame.size.width);
+		targetRect = CGRectMake(0.0, 0.0, maxSize, maxSize / viewAspect);
+		targetRect.origin.y = -(targetRect.size.height - imageSize.height) / 2.0;
+	} else {
+			// Fit to height
+		float maxSize = MAX(imageSize.height, self.frame.size.height);
+		targetRect = CGRectMake(0.0, 0.0, maxSize * viewAspect, maxSize);
+		targetRect.origin.x = -(targetRect.size.width - imageSize.width) / 2.0;
+	}
+	
+	// Draw and get image
 	UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
-	[self drawViewHierarchyInRect:CGRectMake(0.0, 0.0, imageSize.width, imageSize.height) afterScreenUpdates:NO];
+	[self drawViewHierarchyInRect:targetRect afterScreenUpdates:NO];
 	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
