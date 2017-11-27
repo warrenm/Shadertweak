@@ -31,8 +31,10 @@
 @property (nonatomic, strong) id<MTLRenderPipelineState> renderPipelineState;
 @property (nonatomic, strong) id<MTLBuffer> vertexBuffer;
 @property (nonatomic, assign) NSTimeInterval startTime;
+@property (nonatomic, readwrite) float time, timeDelta;
 @property (nonatomic, copy) NSMutableArray *touches;
 @property (nonatomic, copy) NSMutableArray *textures;
+@property (nonatomic, readwrite) CGFloat resolutionScale;
 @end
 
 @implementation STWSceneView
@@ -65,11 +67,35 @@
     // makes it responsive to the usual setNeedsDisplay message sequence
 //    self.paused = YES;
 //    self.enableSetNeedsDisplay = YES;
+	
+		// Set resolution scale to 2.0 (retina) and disable resizing drawable.
+	self.resolutionScale = 2.0;
+	self.autoResizeDrawable = NO;
+	
+	// Use XR pixel formats on devices with P3 capable displays
+	if ([UIScreen mainScreen].traitCollection.displayGamut == UIDisplayGamutP3) {
+		self.colorPixelFormat =  MTLPixelFormatBGR10_XR;
+	}
+	
+	self.time = 0;
 
     self.startTime = CACurrentMediaTime();
 
     [self makeVertexBuffer];
     [self makeDefaultTextures];
+}
+
+- (void)updateResolutionScaling:(CGFloat)scale {
+	self.resolutionScale = scale;
+	[self layoutSubviews];
+	[self setNeedsDisplay];
+}
+
+-(void)layoutSubviews {
+	CGSize frameSize = self.frame.size;
+	self.drawableSize = CGSizeMake(frameSize.width * self.resolutionScale, frameSize.height * self.resolutionScale);
+	[super layoutSubviews];
+	[self setNeedsDisplay];
 }
 
 - (void)makeVertexBuffer {
@@ -192,8 +218,22 @@
     }
 
     STWUniforms uniforms;
-    uniforms.time = CACurrentMediaTime() - self.startTime;
-    uniforms.deltaTime = 1 / 60.0f;
+	
+	// If paused use the last saved time + time delta, otherwise calculate and store values
+	if (self.paused) {
+		uniforms.time = self.time;
+		uniforms.deltaTime = self.timeDelta;
+	} else {
+		float time = CACurrentMediaTime() - self.startTime;
+		float deltaTime = time - self.time;
+		
+		uniforms.time = time;
+		uniforms.deltaTime = deltaTime;
+		
+		self.time = time;
+		self.timeDelta = deltaTime;
+	}
+	
     uniforms.resolution = (packed_float2) { self.drawableSize.width, self.drawableSize.height };
 
     for (int i = 0; i < STWMaxConcurrentTouches; ++i) {
@@ -232,7 +272,31 @@
 }
 
 - (UIImage *)captureSnapshotAtSize:(CGSize)imageSize {
-    return [STWSnapshotter captureSnapshotOfSize:imageSize renderPipelineState:self.renderPipelineState textures:self.textures];
+	// get the current view as image, scaled and cropped to fit
+	CGFloat viewAspect = self.frame.size.width / self.frame.size.height;
+	CGFloat imageAspect = imageSize.width / imageSize.height;
+	
+	// Determine rectangle to draw in to aspect fill
+	CGRect targetRect;
+	if (imageAspect > viewAspect) {
+			// Fit to width
+		float maxSize = MAX(imageSize.width, self.frame.size.width);
+		targetRect = CGRectMake(0.0, 0.0, maxSize, maxSize / viewAspect);
+		targetRect.origin.y = -(targetRect.size.height - imageSize.height) / 2.0;
+	} else {
+			// Fit to height
+		float maxSize = MAX(imageSize.height, self.frame.size.height);
+		targetRect = CGRectMake(0.0, 0.0, maxSize * viewAspect, maxSize);
+		targetRect.origin.x = -(targetRect.size.width - imageSize.width) / 2.0;
+	}
+	
+	// Draw and get image
+	UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
+	[self drawViewHierarchyInRect:targetRect afterScreenUpdates:NO];
+	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	return image;
 }
 
 @end

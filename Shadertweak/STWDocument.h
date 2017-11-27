@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, SWTGeometryType) {
 @property (nonatomic, copy) NSString *fragmentSource;
 @property (nonatomic, assign) SWTGeometryType geometryType;
 @property (nonatomic, strong) UIImage *thumbnailImage;
+@property (nonatomic, readwrite) int resolutionScale;
 
 // TODO: Add properties such as bound known textures, pointers to user-loaded textures, custom models, etc.
 

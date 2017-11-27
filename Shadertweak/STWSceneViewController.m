@@ -107,4 +107,9 @@
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
+-(void)setIsRunning:(BOOL)isRunning {
+	self.sceneView.paused = !isRunning;
+	self.sceneView.enableSetNeedsDisplay = !isRunning;
+}
+
 @end

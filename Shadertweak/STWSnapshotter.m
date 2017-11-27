@@ -7,6 +7,8 @@
 + (UIImage *)captureSnapshotOfSize:(CGSize)size
                renderPipelineState:(id<MTLRenderPipelineState>)renderPipelineState
                           textures:(NSArray *)textures
+							  time:(float)time
+						 deltaTime:(float)delta
 {
     if (renderPipelineState == nil) {
         NSLog(@"WARN: No render pipeline state; skipping snapshot");
@@ -23,16 +25,17 @@
     };
 
     STWUniforms uniforms;
-    uniforms.time = 15.0;  // TODO: Parameterize capture time?
-    uniforms.deltaTime = 1 / 60.0f;
+	uniforms.time = time;
+	uniforms.deltaTime = delta;
     uniforms.resolution = (packed_float2) { size.width, size.height };
 
-    MTLTextureDescriptor *textureDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatRGBA8Unorm
+    MTLTextureDescriptor *textureDesc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatBGRA8Unorm
                                                                                            width:size.width
                                                                                           height:size.height
                                                                                        mipmapped:NO];
+	textureDesc.usage = MTLTextureUsageRenderTarget;
     id<MTLTexture> texture = [metalContext.device newTextureWithDescriptor:textureDesc];
-
+	
     MTLRenderPassDescriptor *passDescriptor = [MTLRenderPassDescriptor renderPassDescriptor];
     passDescriptor.colorAttachments[0].texture = texture;
     passDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
